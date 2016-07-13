@@ -21,8 +21,9 @@ public class ChartClientHandler extends SimpleChannelInboundHandler<Object>{
                 String msg = response.getMsg();
                 System.out.println(msg);
                 this.response.setMsg(msg);
+                //channelHandlerContext.fireChannelRead(o);
                 //关闭客户端连接
-                channelHandlerContext.channel().disconnect();
+                //channelHandlerContext.channel().disconnect();
             }
     }
 }

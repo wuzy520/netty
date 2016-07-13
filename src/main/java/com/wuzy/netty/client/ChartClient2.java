@@ -19,7 +19,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 /**
  * Created by wuzhengyun on 16/7/11.
  */
-public class ChartClient {
+public class ChartClient2 {
     public static void main(String[] args) {
         final Response response = new Response();
         Bootstrap bootstrap = new Bootstrap();
@@ -38,9 +38,9 @@ public class ChartClient {
             ChannelFuture channelFuture = bootstrap.connect("localhost", 9000).sync();
             Channel channel = channelFuture.channel();
             Request request = new Request();
-            request.setUname("sky");
-            request.setToUser("camile");
-            request.setMsg("你好,有空吗?");
+            request.setUname("camile");
+            request.setToUser("sky");
+            request.setMsg("我有空啊");
             channel.writeAndFlush(request);
             channel.closeFuture().sync();
             System.out.println("服务端返回的数据: " + response.getMsg());
