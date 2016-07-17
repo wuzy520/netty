@@ -31,9 +31,8 @@ public class ChartServerHandler extends SimpleChannelInboundHandler<Object> {
         if (o instanceof Request) {
             Request request = (Request) o;
             String reqUname = request.getUname();
-           channelMap.put(reqUname,ch);
+            channelMap.put(reqUname,ch);
             //先看下别人有没有给自己发消息
-          // String msg =  toUserMsg.get(reqUname);
             String msg = null;
             byte[] bytes = jedisUtil.get(reqUname.getBytes());//先看下别人有没有给自己发消息
             if (bytes!=null){
@@ -56,11 +55,8 @@ public class ChartServerHandler extends SimpleChannelInboundHandler<Object> {
                 channel.writeAndFlush(response);
             }else{
               //如果没有找到别人,放入到toUserMsg中去
-               // toUserMsg.put(request.getToUser(),reqUname+":"+request.getMsg());
                 jedisUtil.set(request.getToUser().getBytes(),(reqUname+":"+request.getMsg()).getBytes());
             }
-            //Response response = new Response(request.getId() + "-" + request.getName());
-            //channelHandlerContext.writeAndFlush(response);
         }
     }
 
