@@ -5,6 +5,9 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.wuzy.netty.util.KryoUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by wuzhengyun on 16/7/16.
  */
@@ -34,11 +37,15 @@ public class KryoDemo {
 
 
       Student student = new Student(1,"sky");
-       byte[] bytes =  KryoUtil.serial(student);
+        List<Student> students = new ArrayList<>();
+        students.add(student);
+       byte[] bytes =  KryoUtil.serial(students);
 
         Object obj = KryoUtil.deserial(bytes);
-        Student student1 = (Student)obj;
-        System.out.println(student1.getId()+","+student1.getName());
+        List<Student>  ss = ( List<Student> )obj;
+        for (Student s:ss){
+            System.out.println(s.getId()+","+s.getName());
+        }
     }
 }
 
