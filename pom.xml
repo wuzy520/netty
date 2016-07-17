@@ -15,6 +15,20 @@
             <artifactId>netty-all</artifactId>
             <version>5.0.0.Alpha2</version>
         </dependency>
+
+        <!--序列化框架-->
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.javakaffee.msm</groupId>
+            <artifactId>msm-kryo-serializer</artifactId>
+            <version>1.9.5</version>
+        </dependency>
+
     </dependencies>
 
 

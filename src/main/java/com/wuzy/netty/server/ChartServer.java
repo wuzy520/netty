@@ -1,7 +1,10 @@
 package com.wuzy.netty.server;
 
+import com.wuzy.netty.codec.KryoMsgDecoder;
+import com.wuzy.netty.codec.KryoMsgEncoder;
 import com.wuzy.netty.handler.server.ChartServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -22,11 +25,15 @@ public class ChartServer {
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup work = new NioEventLoopGroup();
 
-        bootstrap.group(boss, work).channel(NioServerSocketChannel.class).childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000).childHandler(new ChannelInitializer<SocketChannel>() {
+        bootstrap.group(boss, work).channel(NioServerSocketChannel.class)
+                .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)//Bytebuf内存池
+                .childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000).childHandler(new ChannelInitializer<SocketChannel>() {
             protected void initChannel(SocketChannel socketChannel) throws Exception {
                 socketChannel.pipeline()
-                        .addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)))
-                        .addLast(new ObjectEncoder())
+                        //.addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)))
+                        //.addLast(new ObjectEncoder())
+                        .addLast(new KryoMsgDecoder())
+                        .addLast(new KryoMsgEncoder())
                         .addLast(new ChartServerHandler());
             }
         });

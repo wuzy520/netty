@@ -1,5 +1,7 @@
 package com.wuzy.netty.client;
 
+import com.wuzy.netty.codec.KryoMsgDecoder;
+import com.wuzy.netty.codec.KryoMsgEncoder;
 import com.wuzy.netty.handler.client.ChartClientHandler;
 import com.wuzy.netty.handler.client.ClientHandler;
 import com.wuzy.netty.pojo.Request;
@@ -16,6 +18,8 @@ import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 
+import java.util.Scanner;
+
 /**
  * Created by wuzhengyun on 16/7/11.
  */
@@ -27,8 +31,10 @@ public class ChartClient2 {
         bootstrap.group(group).channel(NioSocketChannel.class).handler(new ChannelInitializer<SocketChannel>() {
             protected void initChannel(SocketChannel socketChannel) throws Exception {
                 socketChannel.pipeline()
-                        .addLast(new ObjectEncoder())
-                        .addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)))
+                        //.addLast(new ObjectEncoder())
+                        //.addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)))
+                        .addLast(new KryoMsgEncoder())
+                        .addLast(new KryoMsgDecoder())
                         .addLast(new ChartClientHandler(response))
                         .addLast(new ClientHandler());
             }
@@ -43,7 +49,7 @@ public class ChartClient2 {
             request.setMsg("我有空啊");
             channel.writeAndFlush(request);
             channel.closeFuture().sync();
-            System.out.println("服务端返回的数据: " + response.getMsg());
+            //System.out.println("服务端返回的数据: " + response.getMsg());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
