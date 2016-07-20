@@ -8,7 +8,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 /**
  * Created by wuzhengyun on 16/7/11.
  */
-@ChannelHandler.Sharable
 public class ChartClientHandler extends SimpleChannelInboundHandler<Object>{
 
     private Response response;
