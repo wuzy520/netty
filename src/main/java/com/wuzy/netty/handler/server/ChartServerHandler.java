@@ -5,10 +5,7 @@ import com.wuzy.netty.pojo.Request;
 import com.wuzy.netty.pojo.Response;
 import com.wuzy.netty.util.JedisUtil;
 import com.wuzy.netty.util.KryoUtil;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.*;
 import io.netty.channel.socket.SocketChannel;
 
 import java.util.*;
@@ -16,6 +13,7 @@ import java.util.*;
 /**
  * Created by wuzhengyun on 16/7/11.
  */
+@ChannelHandler.Sharable
 public class ChartServerHandler extends SimpleChannelInboundHandler<Object> {
 
    public static  final Map<String, Channel> channelMap = new HashMap<String, Channel>();

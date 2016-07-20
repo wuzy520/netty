@@ -3,6 +3,7 @@ package com.wuzy.netty.codec;
 import com.wuzy.netty.pojo.Response;
 import com.wuzy.netty.util.KryoUtil;
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.ReplayingDecoder;

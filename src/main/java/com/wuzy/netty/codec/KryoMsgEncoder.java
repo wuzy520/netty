@@ -3,12 +3,14 @@ package com.wuzy.netty.codec;
 import com.wuzy.netty.pojo.Request;
 import com.wuzy.netty.util.KryoUtil;
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 /**
  * Created by wuzhengyun on 16/7/16.
  */
+@ChannelHandler.Sharable
 public class KryoMsgEncoder extends MessageToByteEncoder {
     protected void encode(ChannelHandlerContext channelHandlerContext, Object o, ByteBuf byteBuf) throws Exception {
         byte[] body = KryoUtil.serial(o);  //将对象转换为byte，伪代码，具体用什么进行序列化，你们自行选择。可以使用我上面说的一些
