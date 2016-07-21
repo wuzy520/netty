@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by wuzhengyun on 16/7/11.
  */
-public class Request extends MsgType implements Serializable {
+public class Request implements Serializable {
     private int id;
     private String name;
     private String pwd;//密码
