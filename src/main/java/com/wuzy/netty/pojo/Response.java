@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by wuzhengyun on 16/7/11.
  */
-public class Response implements Serializable{
+public class Response extends MsgType implements Serializable{
     private String msg;
 
     public Response(){}

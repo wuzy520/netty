@@ -15,10 +15,11 @@ public class ClientHelper {
 
     private Bootstrap bootstrap = null;
     private EventLoopGroup group = null;
+    private String host;
+    private int port;
 
-    public ClientHelper(ChannelHandler... handlers) {
+    public ClientHelper() {
         init();
-        handlers(handlers);
     }
 
     private void init() {
@@ -26,13 +27,18 @@ public class ClientHelper {
         group = new NioEventLoopGroup();
     }
 
+
+    public Bootstrap getBootstrap(){
+        return bootstrap;
+    }
+
     /**
      * 设置handlers
      *
      * @param handlers
      */
-    private void handlers(ChannelHandler... handlers) {
-        bootstrap.group(group).channel(NioSocketChannel.class).handler(new ChannelInitializer<SocketChannel>() {
+    public void handlers(ChannelHandler... handlers) {
+        bootstrap.group(group).channel(NioSocketChannel.class).option(ChannelOption.SO_KEEPALIVE,true).handler(new ChannelInitializer<SocketChannel>() {
             protected void initChannel(SocketChannel socketChannel) throws Exception {
                 ChannelPipeline pipeline = socketChannel.pipeline();
                 pipeline.addLast(new KryoMsgEncoder(), new KryoMsgDecoder()).addLast(handlers);
@@ -49,9 +55,30 @@ public class ClientHelper {
      * @throws InterruptedException
      */
     public Channel connect(String host, int port) throws InterruptedException {
+        this.host = host;
+        this.port = port;
+        ChannelFuture channelFuture = channelFuture(host,port);
+        return channelFuture.channel();
+    }
+
+    /**
+     * 重新连接
+     */
+    public void reConnect()throws InterruptedException{
+         ChannelFuture channelFuture = channelFuture(this.host,this.port);
+         channelFuture.addListener(new ChannelFutureListener() {
+             @Override
+             public void operationComplete(ChannelFuture channelFuture) throws Exception {
+                 if (channelFuture.isSuccess()){
+                     System.out.println("重新连接成功...");
+                 }
+             }
+         });
+    }
+
+    public ChannelFuture channelFuture(String host, int port)throws InterruptedException{
         ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
-        Channel channel = channelFuture.channel();
-        return channel;
+        return channelFuture;
     }
 
     /**

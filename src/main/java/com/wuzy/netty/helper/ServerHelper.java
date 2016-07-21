@@ -30,6 +30,7 @@ public class ServerHelper {
 
     public void handlers(ChannelHandler... handlers) {
         bootstrap.group(boss, work).channel(NioServerSocketChannel.class)
+                .childOption(ChannelOption.SO_KEEPALIVE,true)//保持长连接
                 .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)//Bytebuf内存池
                 .childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000).childHandler(new ChannelInitializer<SocketChannel>() {
             protected void initChannel(SocketChannel socketChannel) throws Exception {

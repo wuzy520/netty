@@ -1,12 +1,15 @@
 package com.wuzy.netty.handler.server;
 
 import com.sun.org.apache.regexp.internal.RE;
+import com.wuzy.netty.pojo.HeartMsg;
 import com.wuzy.netty.pojo.Request;
 import com.wuzy.netty.pojo.Response;
 import com.wuzy.netty.util.JedisUtil;
 import com.wuzy.netty.util.KryoUtil;
 import io.netty.channel.*;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
 
 import java.util.*;
 
@@ -32,7 +35,7 @@ import java.util.*;
  * }
  * <p>
  * <p>
- *
+ * <p>
  * 上面是一个带@Sharable注解的Handler，它被多个线程使用时，里面count是不安全的，会导致count值错误。
  * 为什么要共享ChannelHandler？使用@Sharable注解共享一个ChannelHandler在一些需求中还是有很好的作用的，
  * 如使用一个ChannelHandler来统计连接数或来处理一些全局数据等等。
@@ -49,7 +52,7 @@ public class ChartServerHandler extends SimpleChannelInboundHandler<Object> {
 
     //从客户端收到消息
     protected void messageReceived(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
-        SocketChannel ch = (SocketChannel) channelHandlerContext.channel();
+        Channel ch = channelHandlerContext.channel();
         if (o instanceof Request) {
             Request request = (Request) o;
             String reqUname = request.getUname();
@@ -60,24 +63,62 @@ public class ChartServerHandler extends SimpleChannelInboundHandler<Object> {
             if (bytes != null) {
                 msg = new String(bytes);
             }
-            if (msg != null) {//如果别人给自己发了消息,先发给自己
+            if (msg != null && !msg.equals("")) {//如果别人给自己发了消息,先发给自己
                 System.out.println("111==" + msg);
                 jedisUtil.del(reqUname.getBytes());
                 ch.writeAndFlush(new Response(msg));
             }
-            //然后显示自己发给自己的
-            ch.writeAndFlush(new Response("我:" + request.getMsg()));
+
 
             //如果发消息给别人
             String toUser = request.getToUser();
-            Channel channel = channelMap.get(toUser);
-            Response response = new Response();
-            if (channel != null) {
-                response.setMsg(reqUname + ":" + request.getMsg());
-                channel.writeAndFlush(response);
-            } else {
-                //如果没有找到别人,放入到toUserMsg中去
-                jedisUtil.set(request.getToUser().getBytes(), (reqUname + ":" + request.getMsg()).getBytes());
+            if (toUser != null) {
+                Channel channel = channelMap.get(toUser);
+                Response response = new Response();
+                if (channel != null) {
+                    response.setMsg(reqUname + ":" + request.getMsg());
+                    channel.writeAndFlush(response);
+                } else {
+                    //如果没有找到别人,放入到toUserMsg中去
+                    jedisUtil.set(toUser.getBytes(), (reqUname + ":" + request.getMsg()).getBytes());
+                }
+            }
+
+            //然后显示自己发给自己的
+            if (request.getMsg() != null) {
+                ch.writeAndFlush(new Response("我:" + request.getMsg()));
+                if ("bye".equals(request.getMsg())) {
+                    ch.disconnect();
+                }
+            }
+        }else if (o instanceof HeartMsg){
+            //心跳
+            HeartMsg msg  = (HeartMsg)o;
+            System.out.println("receive client heart msg == "+msg.getMsg());
+            msg.setMsg("server heart !");
+            channelHandlerContext.writeAndFlush(msg);
+        }
+    }
+
+
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        super.userEventTriggered(ctx, evt);
+        if (evt instanceof IdleStateEvent){
+            IdleStateEvent event = (IdleStateEvent)evt;
+            if (event.state().equals(IdleState.READER_IDLE)){
+                //未进行读操作
+                System.out.println("read idle....");
+            }else if (event.state().equals(IdleStateEvent.WRITER_IDLE_STATE_EVENT)){
+                //未进行写操作
+                System.out.println("write idle...");
+            }else if (event.state().equals(IdleState.ALL_IDLE)){
+                //未进行读写
+                System.out.println("All idle");
+                //发送心跳包
+                HeartMsg msg = new HeartMsg();
+                msg.setMsg("idel  heart!");
+                ctx.writeAndFlush(msg);
             }
         }
     }

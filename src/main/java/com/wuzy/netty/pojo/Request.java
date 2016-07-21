@@ -6,9 +6,8 @@ import java.util.List;
 /**
  * Created by wuzhengyun on 16/7/11.
  */
-public class Request implements Serializable {
+public class Request extends MsgType implements Serializable {
     private int id;
-    private int msgType;//消息类型
     private String name;
     private String pwd;//密码
     private String uname;//用户名
@@ -40,14 +39,6 @@ public class Request implements Serializable {
 
     public void setToUser(String toUser) {
         this.toUser = toUser;
-    }
-
-    public int getMsgType() {
-        return msgType;
-    }
-
-    public void setMsgType(int msgType) {
-        this.msgType = msgType;
     }
 
     public String getPwd() {
