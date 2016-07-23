@@ -1,5 +1,7 @@
 package com.wuzy.netty.client;
 
+import com.wuzy.netty.codec.KryoMsgDecoder;
+import com.wuzy.netty.codec.KryoMsgEncoder;
 import com.wuzy.netty.handler.client.ChartClientHandler;
 import com.wuzy.netty.helper.ClientHelper;
 import com.wuzy.netty.pojo.Request;
@@ -12,7 +14,7 @@ import java.util.Scanner;
 public class ChartClient2 {
     public static void main(String[] args) {
         ClientHelper helper = new ClientHelper();
-        helper.handlers(new ChartClientHandler());
+        helper.handlers(new KryoMsgEncoder(),new KryoMsgDecoder(),new ChartClientHandler());
         try {
             Channel channel = helper.connect("localhost",9000);
             //做身份验证使用,可以理解为登陆

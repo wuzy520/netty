@@ -34,8 +34,7 @@ public class ServerHelper {
                 .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)//Bytebuf内存池
                 .childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000).childHandler(new ChannelInitializer<SocketChannel>() {
             protected void initChannel(SocketChannel socketChannel) throws Exception {
-                socketChannel.pipeline()
-                        .addLast(new KryoMsgDecoder(),new KryoMsgEncoder()).addLast(handlers);
+                socketChannel.pipeline().addLast(handlers);
             }
         });
 

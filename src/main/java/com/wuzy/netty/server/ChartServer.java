@@ -1,5 +1,7 @@
 package com.wuzy.netty.server;
 
+import com.wuzy.netty.codec.KryoMsgDecoder;
+import com.wuzy.netty.codec.KryoMsgEncoder;
 import com.wuzy.netty.handler.server.ChartServerHandler;
 import com.wuzy.netty.helper.ServerHelper;
 import io.netty.channel.ChannelFuture;
@@ -15,7 +17,8 @@ public class ChartServer {
         ServerHelper helper = new ServerHelper();
         try {
             ChartServerHandler serverHandler = new ChartServerHandler();
-            helper.handlers(new IdleStateHandler(25,15,10, TimeUnit.SECONDS),serverHandler);
+            helper.handlers(new KryoMsgDecoder(), new KryoMsgEncoder(),
+                    new IdleStateHandler(25, 15, 10, TimeUnit.SECONDS), serverHandler);
             /**
              * 这个处理器，它的作用就是用来检测客户端的读取超时的，
              * 该类的第一个参数是指定读操作空闲秒数，
@@ -29,7 +32,7 @@ public class ChartServer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-           helper.close();
+            helper.close();
         }
     }
 }

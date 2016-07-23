@@ -41,7 +41,7 @@ public class ClientHelper {
         bootstrap.group(group).channel(NioSocketChannel.class).option(ChannelOption.SO_KEEPALIVE,true).handler(new ChannelInitializer<SocketChannel>() {
             protected void initChannel(SocketChannel socketChannel) throws Exception {
                 ChannelPipeline pipeline = socketChannel.pipeline();
-                pipeline.addLast(new KryoMsgEncoder(), new KryoMsgDecoder()).addLast(handlers);
+                pipeline.addLast(handlers);
             }
         });
     }
