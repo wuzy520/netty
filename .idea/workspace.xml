@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64f657bb-94db-4928-af07-f91607831d60" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/server/HttpServer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/RequestParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wuzy/netty/server/HttpServer$1$1.class" afterPath="$PROJECT_DIR$/target/classes/com/wuzy/netty/server/HttpServer$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wuzy/netty/server/HttpServer$1.class" afterPath="$PROJECT_DIR$/target/classes/com/wuzy/netty/server/HttpServer$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wuzy/netty/server/HttpServer.class" afterPath="$PROJECT_DIR$/target/classes/com/wuzy/netty/server/HttpServer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/client/ChartClient.java" afterPath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/client/ChartClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/client/ChartClient2.java" afterPath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/client/ChartClient2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/helper/ClientHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/helper/ClientHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/helper/ServerHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/helper/ServerHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/server/ChartServer.java" afterPath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/server/ChartServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/server/HttpServer.java" afterPath="$PROJECT_DIR$/src/main/java/com/wuzy/netty/server/HttpServer.java" />
     </list>
     <ignored path="netty.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,16 +35,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-106">
               <caret line="19" column="23" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/helper/ClientHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -83,14 +72,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpServer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HttpServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/server/HttpServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="40" column="50" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="50" />
+            <state relative-caret-position="340">
+              <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestParser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/RequestParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="17" column="27" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueryStringDecoder.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Downloads/maven/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/handler/codec/http/QueryStringDecoder.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="108" column="37" selection-start-line="108" selection-start-column="11" selection-end-line="108" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,11 +117,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JavaUdpClient.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JavaUdpClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/client/JavaUdpClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+            <state relative-caret-position="306">
+              <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -179,6 +188,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/wuzy/netty/helper/ClientHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wuzy/netty/client/ChartClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wuzy/netty/client/ChartClient2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wuzy/netty/RequestParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wuzy/netty/server/HttpServer.java" />
       </list>
     </option>
@@ -319,36 +329,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -370,7 +350,7 @@
       <recent name="com.wuzy.netty.client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.JavaUdpClient">
+  <component name="RunManager" selected="Application.HttpServer">
     <configuration default="false" name="UdpClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -881,9 +861,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.JavaUdpClient" />
-        <item index="1" class="java.lang.String" itemvalue="Application.JavaUdpServer" />
-        <item index="2" class="java.lang.String" itemvalue="Application.HttpServer" />
+        <item index="0" class="java.lang.String" itemvalue="Application.HttpServer" />
+        <item index="1" class="java.lang.String" itemvalue="Application.JavaUdpClient" />
+        <item index="2" class="java.lang.String" itemvalue="Application.JavaUdpServer" />
         <item index="3" class="java.lang.String" itemvalue="Application.UdpClient" />
         <item index="4" class="java.lang.String" itemvalue="Application.UdpServer" />
       </list>
@@ -907,16 +887,16 @@
       <workItem from="1468414954470" duration="4985000" />
       <workItem from="1469011229795" duration="25652000" />
       <workItem from="1469095397850" duration="200000" />
-      <workItem from="1469095741621" duration="18255000" />
+      <workItem from="1469095741621" duration="20592000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58144000" />
+    <option name="totallyTimeSpent" value="60481000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -967,15 +947,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/pojo/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/maven/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/bootstrap/ServerBootstrap.class" />
-    <entry file="jar://$USER_HOME$/Downloads/maven/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/bootstrap/ServerBootstrap.class" />
     <entry file="jar://$USER_HOME$/Downloads/maven/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/channel/EventLoopGroup.class" />
     <entry file="jar://$USER_HOME$/Downloads/maven/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/channel/nio/NioEventLoopGroup.class" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/DD.java" />
@@ -1228,32 +1199,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/helper/ServerHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
-          <folding>
-            <element signature="e#773#774#0" expanded="true" />
-            <element signature="e#795#796#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Downloads/maven/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/handler/codec/http/HttpHeaderUtil.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/server/HttpServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="40" column="50" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1269,8 +1219,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/client/JavaUdpClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+        <state relative-caret-position="306">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/helper/ServerHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+          <folding>
+            <element signature="e#773#774#0" expanded="true" />
+            <element signature="e#795#796#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/maven/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/handler/codec/http/QueryStringDecoder.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="108" column="37" selection-start-line="108" selection-start-column="11" selection-end-line="108" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/maven/io/netty/netty-all/5.0.0.Alpha2/netty-all-5.0.0.Alpha2.jar!/io/netty/util/concurrent/SingleThreadEventExecutor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="75" column="31" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/RequestParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wuzy/netty/server/HttpServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -10,6 +10,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.*;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by wuzhengyun on 16/7/22.
  */
@@ -24,20 +27,25 @@ public class HttpServer {
             protected void initChannel(SocketChannel socketChannel) throws Exception {
                 socketChannel.pipeline().addLast(new HttpResponseEncoder())
                         .addLast(new HttpRequestDecoder())
-                        .addLast(new SimpleChannelInboundHandler<Object>() {
+                       // .addLast(new HttpContentCompressor())//压缩
+                        .addLast(new SimpleChannelInboundHandler<HttpObject>() {
                             @Override
-                            protected void messageReceived(ChannelHandlerContext channelHandlerContext, Object msg) throws Exception {
+                            protected void messageReceived(ChannelHandlerContext channelHandlerContext, HttpObject msg) throws Exception {
                                 HttpRequest request =null;
                                 if (msg instanceof HttpRequest) {
                                     request = (HttpRequest) msg;
-
                                     String uri = request.uri();
-                                    System.out.println("Uri:" + uri);
+                                    if(uri.equals("/favicon.ico")){
+                                        return;
+                                    }
+
+                                    QueryStringDecoder decoder = new QueryStringDecoder(request.uri());
+                                    System.out.println("params = = "+decoder.parameters());
                                 }
                                 if (msg instanceof HttpContent) {
                                     HttpContent content = (HttpContent) msg;
                                     ByteBuf buf = content.content();
-                                    System.out.println(buf.toString(io.netty.util.CharsetUtil.UTF_8));
+                                    System.out.println("abc=="+buf.toString(io.netty.util.CharsetUtil.UTF_8));
                                     buf.release();
 
                                     String res = "{'name':'sky','age':12}";
