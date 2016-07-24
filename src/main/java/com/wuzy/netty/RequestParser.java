@@ -1,8 +1,6 @@
 package com.wuzy.netty;
 
-import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.HttpMethod;
-import io.netty.handler.codec.http.QueryStringDecoder;
+import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.multipart.Attribute;
 import io.netty.handler.codec.http.multipart.HttpPostRequestDecoder;
 import io.netty.handler.codec.http.multipart.InterfaceHttpData;
@@ -15,14 +13,17 @@ import java.util.Map;
  * HTTP请求参数解析器, 支持GET, POST
  */
 public class RequestParser {
-    private FullHttpRequest fullReq;
+    private HttpRequest req;
+
+    private HttpPostRequestDecoder decoder;
+    private HttpContent content;
 
     /**
      * 构造一个解析器
      * @param req
      */
-    public RequestParser(FullHttpRequest req) {
-        this.fullReq = req;
+    public RequestParser(HttpRequest req) {
+        this.req = req;
     }
 
     /**
@@ -32,32 +33,45 @@ public class RequestParser {
      * @throws IOException
      */
     public Map<String, String> parse() throws IOException {
-        HttpMethod method = fullReq.method();
+        HttpMethod method = req.method();
 
         Map<String, String> parmMap = new HashMap<>();
 
         if (HttpMethod.GET == method) {
             // 是GET请求
-            QueryStringDecoder decoder = new QueryStringDecoder(fullReq.uri());
+            QueryStringDecoder decoder = new QueryStringDecoder(req.uri());
             decoder.parameters().entrySet().forEach( entry -> {
                 // entry.getValue()是一个List, 只取第一个元素
                 parmMap.put(entry.getKey(), entry.getValue().get(0));
             });
-        } else if (HttpMethod.POST == method) {
+        }else if (HttpMethod.POST == method) {
             // 是POST请求
-            HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(fullReq);
-            decoder.offer(fullReq);
+            decoder = new HttpPostRequestDecoder(req);
+            return null;
+        }
+        return parmMap;
+    }
 
-            List<InterfaceHttpData> parmList = decoder.getBodyHttpDatas();
+    public Map<String,String> getValue()throws IOException{
+        Map<String, String> parmMap = new HashMap<>();
+        decoder.offer(content);
 
-            for (InterfaceHttpData parm : parmList) {
+        List<InterfaceHttpData> parmList = decoder.getBodyHttpDatas();
 
-                Attribute data = (Attribute) parm;
-                parmMap.put(data.getName(), data.getValue());
-            }
-
+        for (InterfaceHttpData parm : parmList) {
+            Attribute data = (Attribute) parm;
+            parmMap.put(data.getName(), data.getValue());
         }
 
         return parmMap;
+
+    }
+
+    public void setContent(HttpContent content) {
+        this.content = content;
+    }
+
+    public HttpPostRequestDecoder getDecoder() {
+        return decoder;
     }
 }
