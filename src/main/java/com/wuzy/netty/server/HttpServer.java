@@ -29,6 +29,7 @@ public class HttpServer {
                 socketChannel.pipeline().addLast(new HttpResponseEncoder())
                         .addLast(new HttpRequestDecoder())
                         .addLast(new HttpContentCompressor())//压缩
+                       // .addLast(new HttpObjectAggregator(512 * 1024))//添加 HttpObjectAggregator 到 ChannelPipeline, 使用最大消息值是 512kb
                         .addLast(new SimpleChannelInboundHandler<Object>() {
                             HttpPostRequestDecoder decoder = null;
                             @Override
