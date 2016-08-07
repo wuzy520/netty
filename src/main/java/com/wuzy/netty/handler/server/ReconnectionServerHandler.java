@@ -1,6 +1,7 @@
 package com.wuzy.netty.handler.server;
 
 import com.wuzy.netty.pojo.Request;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -19,7 +20,6 @@ public class ReconnectionServerHandler extends SimpleChannelInboundHandler<Reque
         System.out.println(" handler channelRegistered");
     }
 
-
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("handler channelActive");
@@ -32,10 +32,13 @@ public class ReconnectionServerHandler extends SimpleChannelInboundHandler<Reque
 
     }
 
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         System.out.println(" complate ....");
+        ctx.channel().close().sync();
     }
+
 
 
     @Override
@@ -54,7 +57,6 @@ public class ReconnectionServerHandler extends SimpleChannelInboundHandler<Reque
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         System.out.println(" handler removed");
     }
-
 
 
     @Override
