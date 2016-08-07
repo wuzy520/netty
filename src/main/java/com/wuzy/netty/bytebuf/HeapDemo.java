@@ -1,7 +1,6 @@
 package com.wuzy.netty.bytebuf;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufHolder;
 import io.netty.buffer.Unpooled;
 import io.netty.util.CharsetUtil;
 

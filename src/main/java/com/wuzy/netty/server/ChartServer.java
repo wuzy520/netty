@@ -6,7 +6,6 @@ import com.wuzy.netty.handler.server.ChartServerHandler;
 import com.wuzy.netty.helper.ServerHelper;
 import io.netty.channel.ChannelFuture;
 import io.netty.handler.timeout.IdleStateHandler;
-
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -16,7 +15,7 @@ public class ChartServer {
     public static void main(String[] args) {
         ServerHelper helper = new ServerHelper();
         try {
-            ChartServerHandler serverHandler = new ChartServerHandler();
+           final ChartServerHandler serverHandler = new ChartServerHandler();
             helper.handlers(new KryoMsgDecoder(), new KryoMsgEncoder(),
                     new IdleStateHandler(25, 15, 10, TimeUnit.SECONDS), serverHandler);
             /**
